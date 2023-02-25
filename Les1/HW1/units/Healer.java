@@ -12,5 +12,11 @@ public class Healer extends BaseHero {
     public String getInfo() {
         return String.format("%s  Healing: %d", super.getInfo(), this.healed);
     }
+
+    @Override
+    public void die() {
+        // TODO Auto-generated method stub
+        
+    }
     
 }

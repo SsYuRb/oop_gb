@@ -6,4 +6,10 @@ public class Peasant extends BaseHero {
         super(name, 1, 1, 1, 1);
     }
 
+    @Override
+    public void die() {
+        // TODO Auto-generated method stub
+        
+    }
+
 }

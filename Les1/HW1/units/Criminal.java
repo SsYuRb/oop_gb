@@ -6,5 +6,11 @@ public class Criminal extends BaseHero{
         super(name, hp, damage, speed, def);
 
     }
+
+    @Override
+    public void die() {
+        // TODO Auto-generated method stub
+        
+    }
     
 }

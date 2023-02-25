@@ -2,7 +2,7 @@ package HW1.units;
 
 import java.util.Random;
 
-public abstract class BaseHero {
+public abstract class BaseHero implements Interface{
     protected static int number;
     protected static Random r;
     protected String name;
@@ -21,11 +21,6 @@ public abstract class BaseHero {
         this.def = def;
     }
 
-    public String getInfo() {
-        return String.format("Name: %s  Hp: %d  Type: %s Damage: %d Defensive: %d Speed: %d",
-                this.name, this.hp, this.getClass().getSimpleName(), this.damage, this.def, this.speed);
-    }
-
     protected void healed(int Hp) {
         this.hp = Hp + this.hp > this.maxHp ? this.maxHp : Hp + this.hp;
     }
@@ -34,8 +29,17 @@ public abstract class BaseHero {
         if (this.hp - damage > 0) {
             this.hp -= damage;
         }
-        // else { die(); }
+        else { die(); }
     }
 
+    public abstract void die();
 
+    @Override
+    public void step() {}
+
+    @Override
+    public String getInfo() {
+        return String.format("Я %s Name: %s  Hp: %d  Damage: %d Defensive: %d Speed: %d",
+                 this.getClass().getSimpleName(), this.name, this.hp, this.damage, this.def, this.speed);
+    }
 }
