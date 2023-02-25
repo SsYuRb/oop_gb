@@ -8,44 +8,66 @@ import HW1.units.Outlaw;
 import HW1.units.Peasant;
 import HW1.units.Sniper;
 import HW1.units.Spearman;
-
+import HW1.units.SpeedComparator;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 public class Game {
     public static void main(String[] args) {
-        List<BaseHero> teams = new ArrayList<>();
-        int teamCount = 10;
+        List<BaseHero> team1 = new ArrayList<>();
+        List<BaseHero> team2 = new ArrayList<>();
+        int teamCount = 5;
         Random rand = new Random();
+        System.out.println("Команда 1: ");
         for (int i = 0; i < teamCount; i++) {
-            int val = rand.nextInt(7);
+            int val = rand.nextInt(4);
             switch (val) {
                 case 0:
-                    teams.add(new Peasant(String.format("Peasant %d", i+1)));
+                    team1.add(new Peasant(getName()));
                     break;
                 case 1:
-                    teams.add(new Crossbowman(String.format("Crossbowman %d", i+1)));
+                    team1.add(new Outlaw(getName()));
                     break;
                 case 2:
-                    teams.add(new Magician(String.format("Magician %d", i+1)));
+                    team1.add(new Magician(getName()));
                     break;
                 case 3:
-                    teams.add(new Monk(String.format("Monk %d", i+1)));
-                    break;
-                case 4:
-                    teams.add(new Outlaw(String.format("Outlaw %d", i+1)));
-                    break;
-                case 5:
-                    teams.add(new Sniper(String.format("Sniper %d", i+1)));
-                    break;
-                case 6:
-                    teams.add(new Spearman(String.format("Spearman %d", i+1)));
+                    team1.add(new Sniper(getName()));
                     break;
             }
-            System.out.println(teams.get(i).getInfo());
+            System.out.println(team1.get(i).getInfo());
         }
+        System.out.println("Команда 2: ");
+        for (int i = 0; i < teamCount; i++) {
+            int val = rand.nextInt(4);
+            switch (val) {
+                case 0:
+                    team2.add(new Peasant(getName()));
+                    break;
+                case 1:
+                    team2.add(new Spearman(getName()));
+                    break;
+                case 2:
+                    team2.add(new Monk(getName()));
+                    break;
+                case 3:
+                    team2.add(new Crossbowman(getName()));
+                    break;
+            }
+            System.out.println(team1.get(i).getInfo());
+        }
+        
+        List<BaseHero> queue = new ArrayList<>();
+        queue.addAll(team1);
+        queue.addAll(team2);
+        queue.sort(new SpeedComparator().reversed());
+        System.out.println("Sorted by speed");
+        queue.forEach(hero -> System.out.println(hero.getInfo()));
+    }
 
+    public static String getName(){
+        return String.valueOf(Names.values()[new Random().nextInt(Names.values().length)]);
     }
 
 }

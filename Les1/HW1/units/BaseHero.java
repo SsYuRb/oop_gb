@@ -8,15 +8,19 @@ public abstract class BaseHero implements Interface{
     protected String name;
     protected int hp;
     protected int maxHp;
-    protected int damage;
+    protected int maxDamage;
+    protected int minDdamage;
+    protected int atack;
     protected int speed;
     protected int def;
 
-    public BaseHero(String name, int hp, int damage, int speed, int def) {
+    public BaseHero(String name, int hp, int minDamage, int maxDamage, int speed, int def, int atack) {
         this.name = name;
         this.hp = hp;
         this.maxHp = hp;
-        this.damage = damage;
+        this.atack = atack;
+        this.minDdamage = minDamage;
+        this.maxDamage = maxDamage;
         this.speed = speed;
         this.def = def;
     }
@@ -39,7 +43,11 @@ public abstract class BaseHero implements Interface{
 
     @Override
     public String getInfo() {
-        return String.format("Я %s Name: %s  Hp: %d  Damage: %d Defensive: %d Speed: %d",
-                 this.getClass().getSimpleName(), this.name, this.hp, this.damage, this.def, this.speed);
+        return String.format("Я %s Name: %s  Hp: %d  Maximal Damage: %d Defensive: %d Speed: %d",
+                 this.getClass().getSimpleName(), this.name, this.hp, this.maxDamage, this.def, this.speed);
+    }
+
+    public int getSpeed () {
+        return this.speed;
     }
 }

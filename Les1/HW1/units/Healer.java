@@ -1,16 +1,17 @@
 package HW1.units;
 
-public class Healer extends BaseHero {
-    protected int healed;
+public abstract class Healer extends BaseHero {
+    protected int magic;
 
-    public Healer(String name, int hp, int damage, int healed) {
-        super(name, hp, damage, 2, 4);
-        this.healed = healed;
+    public Healer(String name, int minDamage, int maxDamage, int speed, int def, int atack) {
+        super(name, 30, minDamage, maxDamage, speed, def, atack);
+        this.magic = 1; 
+        //TODO Auto-generated constructor stub
     }
 
     @Override
     public String getInfo() {
-        return String.format("%s  Healing: %d", super.getInfo(), this.healed);
+        return String.format("%s  Magic: %d", super.getInfo(), this.magic);
     }
 
     @Override

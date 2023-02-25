@@ -1,10 +1,10 @@
 package HW1.units;
 
-public class Criminal extends BaseHero{
+public abstract class Criminal extends BaseHero{
 
-    public Criminal(String name, int hp, int damage, int speed, int def) {
-        super(name, hp, damage, speed, def);
-
+    public Criminal(String name, int minDamage, int maxDamage, int speed, int def, int atack) {
+        super(name, 10, minDamage, maxDamage, speed, def, atack);
+        //TODO Auto-generated constructor stub
     }
 
     @Override
@@ -12,5 +12,5 @@ public class Criminal extends BaseHero{
         // TODO Auto-generated method stub
         
     }
-    
+
 }

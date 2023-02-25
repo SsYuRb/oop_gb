@@ -1,9 +1,11 @@
 package HW1.units;
 
-public class Archer extends BaseHero{
-
-    public Archer(String name, int damage, int speed) {
-        super(name, 2, damage, speed, 1);
+public abstract class Archer extends BaseHero{
+    protected int shoots;
+    public Archer(String name, int hp, int minDamage, int maxDamage, int speed, int def, int atack, int shoots) {
+        super(name, hp, minDamage, maxDamage, speed, def, atack);
+        this.shoots = shoots;
+        //TODO Auto-generated constructor stub
     }
 
     @Override
@@ -11,5 +13,6 @@ public class Archer extends BaseHero{
         // TODO Auto-generated method stub
         
     }
+
     
 }
