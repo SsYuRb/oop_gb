@@ -14,6 +14,18 @@ public abstract class Healer extends BaseHero {
         return String.format("%s  Magic: %d", super.getInfo(), this.magic);
     }
 
-
+    @Override
+    public void step() {
+        // TODO Auto-generated method stub
+        super.step();
+        for (BaseHero baseHero : allHeroes) {
+            if (this.side == baseHero.side && !baseHero.die()) {
+                if (baseHero.hp != baseHero.maxHp) {
+                    baseHero.Healing(this.maxDamage);
+                    break;
+                }
+            }
+        }
+    }
     
 }

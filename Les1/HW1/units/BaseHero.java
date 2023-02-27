@@ -36,9 +36,9 @@ public abstract class BaseHero implements Interface{
         allHeroes.add(this);
     }
 
-    protected void healed(int Hp) {
-        this.hp = Hp + this.hp > this.maxHp ? this.maxHp : Hp + this.hp;
-    }
+    // protected void healed(int Hp) {
+    //     this.hp = Hp + this.hp > this.maxHp ? this.maxHp : Hp + this.hp;
+    // }
 
     // protected void getDamage(int damage) {
     //     if (this.hp - damage > 0) {
@@ -52,14 +52,22 @@ public abstract class BaseHero implements Interface{
         o1.die();
     }
 
+    protected void Healing (int h) {
+        if (this.hp - h <= this.maxHp) {
+            this.hp -= h;
+        } else if (this.hp - h > this.maxHp) {
+            this.hp = this.maxHp;
+        }
+    }
+
     protected BaseHero SearchNearstEnemy(){
-        HashMap<BaseHero, Integer> map = new HashMap<>();
-        Integer min = 0;
+        HashMap<BaseHero, Double> map = new HashMap<>();
+        Double min = 100.0;
         for (BaseHero baseHero : allHeroes) {
             if(this.side != baseHero.side){
                 Point2D pointThis = new Point2D(this.x, this.y);
                 Point2D pointEnemy = new Point2D(baseHero.x, baseHero.y);
-                Integer diss = pointThis.distance(pointEnemy);
+                Double diss = pointThis.distance(pointEnemy);
                 if (diss < min){
                     min = diss;
                 }
