@@ -61,25 +61,41 @@ public abstract class BaseHero implements Interface{
     }
 
     protected BaseHero SearchNearstEnemy(){
-        HashMap<BaseHero, Double> map = new HashMap<>();
-        Double min = 100.0;
-        for (BaseHero baseHero : allHeroes) {
-            if((this.side != baseHero.side) && !baseHero.die()){
-                Point2D pointThis = new Point2D(this.x, this.y);
-                Point2D pointEnemy = new Point2D(baseHero.x, baseHero.y);
-                Double diss = pointThis.distance(pointEnemy);
-                if (diss < min){
-                    min = diss;
-                }
-                map.put(baseHero, diss);
+        // HashMap<BaseHero, Double> map = new HashMap<>();
+        // Double min = 10000.0;
+        // for (BaseHero baseHero : allHeroes) {
+        //     if((this.side != baseHero.side) && !baseHero.die()){
+        //         Point2D pointThis = new Point2D(this.x, this.y);
+        //         Point2D pointEnemy = new Point2D(baseHero.x, baseHero.y);
+        //         Double diss = pointThis.distance(pointEnemy);
+        //         if (diss < min){
+        //             min = diss;
+        //         }
+        //         map.put(baseHero, diss);
+        //     }
+        // }
+        // for (BaseHero key: map.keySet()) {
+        //     if (min.equals(map.get(key))){
+        //         return key;
+        //     } else {
+        //         return map.keySet().iterator().next();
+        //     }
+        // }
+        // return null;
+        int index = 0;
+        double min = Double.MAX_VALUE;
+        for (int i = 0; i < allHeroes.size(); i++) {
+            if(min > coords().distance(allHeroes.get(i).coords()) && !allHeroes.get(i).die() && this.side !=allHeroes.get(i).side) {
+                index = i;
+                min = coords().distance(allHeroes.get(i).coords());
             }
         }
-        for (BaseHero key: map.keySet()) {
-            if (min.equals(map.get(key))){
-                return key;
-            }
-        }
-        return null;
+        return allHeroes.get(index);
+    }
+
+    public Point2D coords (){
+        Point2D point = new Point2D(x, y);
+        return point;
     }
 
     public boolean die(){

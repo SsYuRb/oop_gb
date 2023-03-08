@@ -68,12 +68,16 @@ public class Game {
         Scanner user_input = new Scanner(System.in);
         user_input.nextLine();
         while (true){
-            View.view();
-            user_input.nextLine();
-            for (BaseHero human: queue) {
-                human.step();
+                View.view();
+                user_input.nextLine();
+            if (teamLiv(team1, team2)) {
+                for (BaseHero human: queue) {
+                    human.step();
+                }
+            }else{
+                System.out.println("End game");
+                break;
             }
-            
         }
     }
 
@@ -81,4 +85,19 @@ public class Game {
         return String.valueOf(Names.values()[new Random().nextInt(Names.values().length)]);
     }
 
+    public static boolean teamLiv (List<BaseHero> team1, List<BaseHero> team2) {
+        boolean flag1 = false;
+        for (BaseHero baseHero : team1) {
+            if (!baseHero.die()) {
+                flag1 = true;
+            };
+        }
+        boolean flag2 = false;
+        for (BaseHero baseHero : team2) {
+            if (!baseHero.die()) {
+                flag2 = true;
+            };
+        }
+        return (flag1 && flag2);
+    }
 }
