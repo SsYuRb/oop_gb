@@ -46,4 +46,14 @@ public abstract class Archer extends BaseHero {
         return k;
     }
 
+    @Override
+    public String toString() {
+        return name +
+                " H:" + Math.round(hp) +
+                " D:" + def +
+                " A:" + atack +
+                " Dmg:" + Math.round(Math.abs((minDdamage+maxDamage)/2)) +
+                " Shots:" + shoots + " " + leaving(die());
+    }
+
 }

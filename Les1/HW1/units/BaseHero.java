@@ -48,7 +48,7 @@ public abstract class BaseHero implements Interface{
     // }
 
     protected void goAtack(BaseHero o1) {
-        o1.hp = o1.hp - this.minDdamage;
+        o1.hp = o1.hp - (this.minDdamage + this.maxDamage)/2;
         o1.die();
     }
 
@@ -64,7 +64,7 @@ public abstract class BaseHero implements Interface{
         HashMap<BaseHero, Double> map = new HashMap<>();
         Double min = 100.0;
         for (BaseHero baseHero : allHeroes) {
-            if(this.side != baseHero.side){
+            if((this.side != baseHero.side) && !baseHero.die()){
                 Point2D pointThis = new Point2D(this.x, this.y);
                 Point2D pointEnemy = new Point2D(baseHero.x, baseHero.y);
                 Double diss = pointThis.distance(pointEnemy);
@@ -82,19 +82,48 @@ public abstract class BaseHero implements Interface{
         return null;
     }
 
-    public abstract boolean die();
+    public boolean die(){
+        if (this.hp <= 0) {
+            return true;
+        } else {
+            return false;
+        }
+    };
 
     @Override
     public void step() {}
 
     @Override
     public String getInfo() {
-        return String.format("Я %s Name: %s  Hp: %d  Maximal Damage: %d Defensive: %d Speed: %d Position: (%d, %d)",
+        return String.format("%s Name: %s  Hp: %d  Maximal Damage: %d Defensive: %d Speed: %d Position: (%d, %d)",
                  this.getClass().getSimpleName(), this.name, this.hp, this.maxDamage, this.def, this.speed, this.x, this.y);
     }
 
     public int getSpeed () {
         return this.speed;
+    }
+
+    public int[] getCoords() {return new int[]{this.x, this.y};}
+
+    public float getHp() { return hp;}
+
+    public String leaving (boolean die) {
+        if (die) {
+            return "Мертв";
+        }
+        else {
+            return "Жив";
+        }
+    }
+
+    @Override
+    public String toString() {
+        return name +
+                " H:" + Math.round(hp) +
+                " D:" + def +
+                " A:" + atack +
+                " Dmg:" + Math.round(Math.abs((minDdamage+maxDamage)/2)) +
+                " " + leaving(die());
     }
 
 }

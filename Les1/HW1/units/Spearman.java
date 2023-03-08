@@ -7,11 +7,5 @@ public class Spearman extends Criminal{
         //TODO Auto-generated constructor stub
     }
 
-    @Override
-    public boolean die() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'die'");
-    }
-
     
 }

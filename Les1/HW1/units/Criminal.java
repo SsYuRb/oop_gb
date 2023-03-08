@@ -7,5 +7,12 @@ public abstract class Criminal extends BaseHero{
         //TODO Auto-generated constructor stub
     }
 
-
+    @Override
+    public void step() {
+        // TODO Auto-generated method stub
+        super.step();
+        if (!this.die()) {
+            this.goAtack(this.SearchNearstEnemy());
+        }
+    }
 }
